@@ -8,5 +8,5 @@ export class PaymentMethodEntity extends BaseEntity {
     paymentMethod:string
 
     @OneToMany(()=>PurchaseEntity,(purchases)=>purchases.paymentMethod)
-    purchases:string
+    purchases:PurchaseEntity[]
 }

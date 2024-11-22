@@ -41,6 +41,7 @@ export class PurchasesService {
         this.purchaseRepository.createQueryBuilder('purchase')
         .where({isActive: true})
         .leftJoinAndSelect('purchase.paymentMethod','paymentMethod')
+        .leftJoinAndSelect('purchase.customer','customer')
         .take(limit)
         .skip(skip)
         .getMany()
@@ -65,6 +66,7 @@ export class PurchasesService {
       const purchase = await this.purchaseRepository.createQueryBuilder('purchase')
       .where({id, isActive: true})
       .leftJoinAndSelect('purchase.paymentMethod','paymentMethod')
+      .leftJoinAndSelect('purchase.customer','customer')
       .getOne()
 
       if (!purchase) {
